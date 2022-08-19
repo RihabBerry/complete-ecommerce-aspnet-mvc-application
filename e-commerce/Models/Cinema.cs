@@ -11,8 +11,11 @@ namespace e_commerce.Models
 
         [Key]
         public int CinemaId { get; set; }
+        [Display(Name = "Cinema Logo")]
         public string Logo { get; set; }
+        [Display(Name = "Cinema Name")]
         public string Name { get; set; }
+        [Display(Name = "Cinema Description")]
         public string Description { get; set; }
         //RelationShip 
         public List<Movie> Movies { get; set; }
