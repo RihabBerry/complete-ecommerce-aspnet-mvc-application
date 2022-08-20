@@ -11,6 +11,8 @@ namespace e_commerce.Controllers
 {
     public class ActorsController : Controller
     {
+
+
         private readonly IActorsService _actorService;
 
         public ActorsController(IActorsService actorService)
@@ -20,40 +22,38 @@ namespace e_commerce.Controllers
 
         public async Task<IActionResult> Index()
         {
-
-
             var data = await _actorService.GetAll();
             return View(data);
         }
 
         //Get :Actors/Create
         public IActionResult Create()
-       
         {
-           
             return View();
         }
+
         [HttpPost]
-        public async Task<ActionResult> Create([Bind("FullName,ProfilePictureURL,Bio")]Actor actor)
+        public async Task<ActionResult> Create([Bind("FullName,ProfilePictureURL,Bio")] Actor actor)
         {
             if (!ModelState.IsValid)
             {
                 return View(actor);
             }
-           await  _actorService.Add(actor);
+            await _actorService.Add(actor);
             return RedirectToAction(nameof(Index));
 
         }
         //Get:Actors/Details/id
-        public async Task<ActionResult> Details(int id) {
-            
+        public async Task<ActionResult> Details(int id)
+        {
+
 
             Actor actorDetails = await _actorService.GetById(id);
             if (actorDetails == null) return View("Empty");
             return View(actorDetails);
         }
         //Get : Actors/Edit/id
-        public async Task<ActionResult> Edit (int id)
+        public async Task<ActionResult> Edit(int id)
         {
             Actor actorDetails = await _actorService.GetById(id);
             if (actorDetails == null) return View("Empty");
@@ -63,7 +63,7 @@ namespace e_commerce.Controllers
         [HttpPost]
 
         [HttpPost]
-        public async Task<IActionResult> Edit(int id, [Bind("ActorId,FullName,ProfilePictureURL,Bio")] Actor actor)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,FullName,ProfilePictureURL,Bio")] Actor actor)
         {
             if (!ModelState.IsValid)
             {
@@ -72,9 +72,9 @@ namespace e_commerce.Controllers
             await _actorService.Update(id, actor);
             return RedirectToAction(nameof(Index));
         }
-        
+
         //Get: Actors/Delete/1
-        public async Task<ActionResult> Delete(int id )
+        public async Task<ActionResult> Delete(int id)
         {
             Actor actorDetails = await _actorService.GetById(id);
             if (actorDetails == null) return View("Empty");

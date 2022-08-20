@@ -21,6 +21,4 @@
     <span asp-validation-for="Bio" class="text-danger"></span>
 
 </div>
-<form asp-action="Edit" asp-route-id="@Model.ActorId">
-    <button type="submit" class="btn btn-primary">Edit</button>
-</form>
+<a class="btn btn-outline-success float-right" asp-action="Edit" asp-route-id="@Model.Id">Edit</a>

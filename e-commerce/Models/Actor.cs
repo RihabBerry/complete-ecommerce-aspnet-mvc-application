@@ -1,4 +1,5 @@
-﻿using System;
+﻿using e_commerce.Data.Base;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -6,10 +7,10 @@ using System.Threading.Tasks;
 
 namespace e_commerce.Models
 {
-    public class Actor
+    public class Actor: IEntityBase
     {
-        [Key] 
-        public int ActorId { get; set; }
+        [Key]
+        public int Id { get; set; }
         [Display(Name ="Profile Picture Url")]
         [Required(ErrorMessage ="Profile Picture is required")]
         public string ProfilePictureURL { get; set; }
@@ -24,6 +25,5 @@ namespace e_commerce.Models
         public string Bio { get; set; }
 
         public List<Actor_Movie> Actors_Movies { get; set; }
-
     }
 }
