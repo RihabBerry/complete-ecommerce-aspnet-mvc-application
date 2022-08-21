@@ -1,5 +1,4 @@
 ﻿using e_commerce.Data;
-using e_commerce.Data.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -12,26 +11,18 @@ namespace e_commerce.Controllers
     public class MoviesController : Controller
     {
 
-        private readonly IMoviesService _movieService;
+        private readonly AppDbContext _context;
 
-        public MoviesController(IMoviesService movieService)
+        public MoviesController(AppDbContext context)
         {
-            _movieService = movieService;
+            _context = context;
         }
         public async Task<IActionResult> Index()
         {
 
 
-            var data = await _movieService.GetAll(n=>n.Cinema);
+            var data = await _context.Movies.Include(n=>n.Cinema).ToListAsync();
             return View(data);
-        }
-
-        //Get: Movies/Details/1
-        public async Task<IActionResult> Details (int id)
-        {
-            var result = await _movieService.GetMovieById(id);
-            if (result == null) return View("NotFound");
-            return View(result);
         }
     }
 }

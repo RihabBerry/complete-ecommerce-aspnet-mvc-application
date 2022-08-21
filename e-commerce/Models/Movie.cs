@@ -1,5 +1,4 @@
 ﻿using e_commerce.Data;
-using e_commerce.Data.Base;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -8,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace e_commerce.Models
 {
-    public class Movie :IEntityBase
+    public class Movie
     {
         [Key]
         public int Id { get; set; }
