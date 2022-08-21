@@ -1,4 +1,5 @@
 ﻿using e_commerce.Data.Base;
+using e_commerce.Data.ViewModels;
 using e_commerce.Models;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -24,6 +25,19 @@ namespace e_commerce.Data.Services
                  .Include(am => am.Actors_Movies).ThenInclude(a => a.Actor)
                  .FirstOrDefaultAsync(n => n.Id == id);
             return moviesDetails;
+        }
+
+        public async Task<NewMovieDropDownVM> GetNewMovieDropdownsValues()
+        {
+
+            var response = new NewMovieDropDownVM()
+            {
+                Actors = await _context.Actors.OrderBy(n => n.FullName).ToListAsync(),
+                Cinemas = await _context.Cinemas.OrderBy(n => n.Name).ToListAsync(),
+                Producers = await _context.Producers.OrderBy(n => n.FullName).ToListAsync()
+            };
+
+            return response;
         }
     }
 }

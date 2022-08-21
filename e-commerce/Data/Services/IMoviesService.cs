@@ -1,4 +1,5 @@
 ﻿using e_commerce.Data.Base;
+using e_commerce.Data.ViewModels;
 using e_commerce.Models;
 using System;
 using System.Collections.Generic;
@@ -11,6 +12,7 @@ namespace e_commerce.Data.Services
 
     {
         Task<Movie> GetMovieById(int id);
+        Task<NewMovieDropDownVM> GetNewMovieDropdownsValues();
     }
 
 }
