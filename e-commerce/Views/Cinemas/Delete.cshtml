@@ -1,0 +1,26 @@
+﻿@model  Cinema
+@{
+    ViewData["Title"] = "Cinema Delete";
+}
+
+
+<div class="form-group">
+    <label asp-for="Logo">Picture Url </label>
+    <input asp-for="Logo" class="form-control" readonly>
+    <span asp-validation-for="Logo" class="text-danger"></span>
+</div>
+<div class="form-group">
+    <label asp-for="Name">Enter Name</label>
+    <input asp-for="Name" class="form-control" readonly>
+    <span asp-validation-for="Name" class="text-danger"></span>
+
+</div>
+<div class="form-group">
+    <label asp-for="Description">Enter Biography</label>
+    <input asp-for="Description" class="form-control" readonly>
+    <span asp-validation-for="Description" class="text-danger"></span>
+
+</div>
+<form asp-action="Delete" asp-route-id="@Model.Id"> 
+    <button type="submit" class="btn btn-danger">Confirm Delete</button>
+</form>
