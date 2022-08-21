@@ -33,7 +33,7 @@ namespace e_commerce
             services.AddScoped<IActorsService, ActorsService>();
             services.AddScoped<IProducerService, ProducerService>();
             services.AddScoped<ICinemasService, CinemasService>();
-
+            services.AddScoped<IMoviesService, MoviesService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
