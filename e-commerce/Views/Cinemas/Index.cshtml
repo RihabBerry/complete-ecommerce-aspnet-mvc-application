@@ -36,9 +36,8 @@
                 <div class="table-title">
                     <div class="row">
                         <div class="col-sm-8"><h2>Actors<b>Details</b></h2></div>
-                        <div class="text-white">
-                            <a asp-action="Create" class="btn btn-success">Add new </a>
-                        </div>
+                        @await Html.PartialAsync("~/Views/Shared/PartialView/_CreateItem.cshtml", "Cinemas")
+
                     </div>
                 </div>
                 <table class="table table-striped table-hover table-bordered" id="example">

@@ -1,8 +1,8 @@
 ﻿@model IEnumerable<Movie>
 
-    @{
-        ViewData["Title"] = "List of Movies";
-    }
+@{
+    ViewData["Title"] = "List of Movies";
+}
 
 <div class="row">
     @foreach (var item in Model)
@@ -54,13 +54,14 @@
                                 <a class="btn btn-outline-primary float-right" asp-action="Details" asp-route-id="@item.Id">
                                     <i class="bi bi-eye-fill"></i> Show Details
                                 </a>
-                              
+
                             </p>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    
-        }
-    </div>
+
+    }
+</div>
+@await Html.PartialAsync("~/Views/Shared/PartialView/_CreateItem.cshtml", "Movies")
