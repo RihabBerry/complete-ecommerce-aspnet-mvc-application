@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore.ChangeTracking;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Threading.Tasks;
 
 namespace e_commerce.Data.Base
@@ -34,6 +35,13 @@ namespace e_commerce.Data.Base
         {
             var result = await _context.Set<T>().ToListAsync();
             return result;
+        }
+
+        public async Task<IEnumerable<T>> GetAll(params Expression<Func<T, object>>[] includesProperties)
+        {
+            IQueryable<T> query = _context.Set<T>();
+            query = includesProperties.Aggregate(query, (current, includeProperty) => current.Include(includeProperty));
+            return await query.ToListAsync();
         }
 
         public async Task<T> GetById(int id)
