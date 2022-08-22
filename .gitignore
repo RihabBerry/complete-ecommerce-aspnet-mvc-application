@@ -454,3 +454,11 @@ $RECYCLE.BIN/
 !.vscode/extensions.json
 e-commerce/bin/Debug/net5.0/e-commerce.Views.dll
 *.pdb
+e-commerce/bin/Debug/net5.0/e-commerce.dll
+*.pdb
+*.dll
+*.pdb
+*.dll
+*.cache
+*.dll
+*.pdb

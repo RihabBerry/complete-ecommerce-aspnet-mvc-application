@@ -13,6 +13,10 @@ namespace e_commerce.Data.Services
     {
         Task<Movie> GetMovieById(int id);
         Task<NewMovieDropDownVM> GetNewMovieDropdownsValues();
+        Task AddMovie(NewMovieVM data);
+        Task UpdateMovie(int id, NewMovieVM data);
+
+        Task Filter();
     }
 
 }
