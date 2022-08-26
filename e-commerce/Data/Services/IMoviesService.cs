@@ -16,7 +16,7 @@ namespace e_commerce.Data.Services
         Task AddMovie(NewMovieVM data);
         Task UpdateMovie(int id, NewMovieVM data);
 
-        Task Filter();
+
     }
 
 }

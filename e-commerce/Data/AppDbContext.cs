@@ -32,5 +32,10 @@ namespace e_commerce.Data
         public DbSet<Cinema> Cinemas { get; set; }
         public DbSet<Actor_Movie> Actors_Movies { get; set; }
 
+     // orders relate tables 
+        public DbSet<Order> Orders { get; set; }
+        public DbSet<OrderItem> orderItems { get; set; }
+        public DbSet<ShoppingCartItem> ShoppingCartItems { get; set; }
+
     }
 }

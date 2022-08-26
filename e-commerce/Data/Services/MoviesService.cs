@@ -43,14 +43,11 @@ namespace e_commerce.Data.Services
                 await _context.Actors_Movies.AddAsync(newActorMovie);
                 await _context.SaveChangesAsync();
             }
-           
+
 
         }
 
-        public Task Filter()
-        {
-            throw new NotImplementedException();
-        }
+
 
         public Task<Movie> GetMovieById(int id)
         {
@@ -75,13 +72,14 @@ namespace e_commerce.Data.Services
             return response;
         }
 
-        public async  Task UpdateMovie(int id, NewMovieVM data)
+        public async Task UpdateMovie(int id, NewMovieVM data)
         {
+            //le retour cest les element de la base des données tnajme ta3mel 3lihom modification 
             var existedMovie = await _context.Movies.FirstOrDefaultAsync(n => n.Id == data.Id);
 
-            if( existedMovie!= null)
+            if (existedMovie != null)
             {
-            
+
                 {
                     existedMovie.Name = data.Name;
                     existedMovie.Description = data.Description;
