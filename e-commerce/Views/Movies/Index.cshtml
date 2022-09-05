@@ -57,12 +57,15 @@
                                 </a>
 
                             </p>
-                            <p class="card-text">
-                                <a class="btn btn-outline-primary float-right" asp-action="OrderItems" asp-route-id="@item.Id">
-                                    <i class="bi bi-cart"></i> Buy 
-                                </a>
+                            <form   asp-action="AddItemToShoppingCart" asp-controller="Orders" asp-route-id="@item.Id">
+                                <p class="card-text">
 
-                            </p>
+                                    <button class="btn btn-outline-primary float-right" >
+                                        <i class="bi bi-cart"></i> Buy
+                                    </button>
+
+                                </p>
+                            </form>
                         </div>
                     </div>
                 </div>

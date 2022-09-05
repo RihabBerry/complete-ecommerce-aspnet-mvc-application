@@ -1,0 +1,100 @@
+-lazemny projet kol n3awwdou react js 
+comment les dropdowns b react ? fil from database always ...
+-t3aba bech ki ta7ki tsakathom 
+-lazemny net3alem na3mel reherche na7fedh les mots clés ...
+-Eager loading is the process whereby a query for one type of entity also loads related entities as part of the query.
+--------
+chneya 7keyet el jointure table :::
+--------
+esm el classe eli tabda bech nesta3mlouha juste bech njibou data DTO 
+
+Many to many relation ship when to add it to database add it on two steps two tables ...
+-----------
+update ....
+----------
+search : 
+type name 
+--------------
+wenty te5deem fi course :
+-lazem tal9a solution tu imagine la solution 
+-ta3mel recherche w tal9a des resltas and save resources for later 
+----------------
+How you can imlement orders and shopping carts :
+lazemek tu develope laspect conceptionel eli 3andek 
+lazeemek tu imagine la solution .....
+
+bech te5dem conception d'un module wa7dek .
+-the user see all the movies. 
+-the user click on buy this movies.  
+-an order is added to the basket. AddOrder ,show a number on the basket-shop .an order is added to the database? are you serious 
+-on click the basket shop list of orders is showns : read from database  
+
+
+est ce que redeux on reload the page , the store is relaoded noo 
+----------------
+Conception Modle Panier 
+
+-Imagination : 1 heure 
+-Rechereche 1 heure correction du imagination
+-diagramme du user cases 1heure 
+-diragramme du classes : 1heures 
+-implementaion du solution 
+------------------------------------------------
+-Add a button add to cart in details 
+-Add a button add to cart in the movie infos.
+-when uou click on add : 
+-Added orders to orders list in the cart: select ordersfrom order table of a user, man8iir login w man8iir user ? 
+-click on panier you get list of orders 
+-figure out the notifications icons on the panier 
+-Crud for an oder class : Add , getAll, remove,  getOrderById,updateQuantity 
+- classOrder : {
+an order has one movie  
+  [key]
+  public int Id
+  public int Quantity {get; set;}
+  public int MovieId  {get; set;}
+ 
+public shoppingCart {
+
+it has many orders 
+[key ] 
+id 
+public List <Orders> orders {get; set;}
+
+}
+
+-2eme part :
+ checkout cart rediret to login or register or confirm payement button 
+-confirm paymenet paypal ?
+
+ ----------------------
+impementation 1heure 
+-implement  add orderItem to shopCart 
+a chaque click to add an itemOrder...
+if user exist and he add the same mmovie then quantity just updated fot eh same use...
+cava 9a3da tu avance fi  
+- when  you coding a new application always you start with models the reloationships between the models and then save in the databse first thing alaways 
+if you need a class and it is not a model it can be a class  
+------------------
+lazemny nwali ki 3ali metwa7da fi 5edmty bech  te5dem 5edma hedhyy a9al 7aja ne années lazemek t7adher rou7ek 
+-------------------------------------
+ela 7ad elen mafama 7ata chay chinois kol chay cava 
+-----------------------
+which shopping card ????
+--------------------------
+fama barcha 7ajet s3ab fi dev ...awel 7aja 3ordhetny fi configuration heya session lazemny nefhemha ....
+tefhemha tawa 3le 9a3da ki tarj3elha just rappel ama lazmek tefhemha 3e 9a3da ..
+hedhy heya partie mte3 el code eli nfed menha weli lazemny petit a petit net3almeha how to coe configuration 
+-----------------
+fama constructor injection is the most famous approches of DI 
+-----------------
+view components ???
+when you have two tables related to each other you ave to save the first and laster get the id from the firt table and save the 
+---------------------?
+manich fehma shoopping cartuifd mninjeya?
+-------------------------------
+List all items in the shopCart in the view :
+get Orders/shoppingCart 
+render a view feha View(response ) response de type ShoppingCartVM
+-----------------
+3leh kol marra cartId ? normlament un seul cart id 
