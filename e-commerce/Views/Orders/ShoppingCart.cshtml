@@ -1,0 +1,121 @@
+﻿@using e_commerce.Data.ViewModels
+
+@model ShoppingCartVM
+
+<link type="text/css" rel="stylesheet" href="./css/Cart/Carte.css" />
+<link rel="stylesheet" href="https://cdn.datatables.net/1.10.2/css/jquery.dataTables.min.css">
+<link href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<section class="h-100 h-custom" style="background-color: #eee;">
+    <div class="container h-100 py-5">
+        <div class="row d-flex justify-content-center align-items-center h-100">
+            <div class="col">
+                <div class="card shopping-cart" style="border-radius: 15px;">
+                    <div class="card-body text-black">
+
+                        <div class="row">
+                            <div class="col-lg-6 px-5 py-4">
+
+                                <h3 class="mb-5 pt-2 text-center fw-bold text-uppercase">Your products</h3>
+
+                                @foreach (var item in Model.ShoppingCart.ShoppingCartItems)
+                                {
+                                    <div class="d-flex align-items-center mb-5">
+                                        <div class="flex-shrink-0">
+                                            <img src=@item.Movie.ImageURL
+                                                 class="img-fluid" style="width: 150px;" alt="Generic placeholder image">
+                                        </div>
+                                        <div class="flex-grow-1 ms-3">
+                                            <a href="#!" class="float-end text-black"><i class="fas fa-times"></i></a>
+                                            <h5 class="text-primary">@item.Movie.Name</h5>
+                                            <h6 style="color: #9e9e9e;">Color: white</h6>
+                                            <div class="d-flex align-items-center">
+                                                <p class="fw-bold mb-0 me-5 pe-3">$@((item.Amount*item.Movie.Price).ToString("c"))</p>
+                                                <div class="def-number-input number-input safari_only">
+                                                    <form asp-action="DeleteItemFromShoppingCart"
+                                                          asp-route-id="@item.Movie.Id">
+                                                        <a onclick="this.parentNode.submit();" class="text-danger">
+                                                            <i class="bi bi-cart-dash"></i>
+                                                        </a>
+                                                    </form>
+                                                    <Input value="@item.Amount" />
+                                                    <form asp-action="AddItemToShoppingCart"
+                                                          asp-route-id="@item.Movie.Id">
+                                                        <a onclick="this.parentNode.submit();" class="text-success">
+                                                            <i class="bi bi-cart-plus"></i>
+                                                        </a>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                }
+                                <hr class="mb-4" style="height: 2px; background-color: #1266f1; opacity: 1;">
+
+
+                                <div class="d-flex justify-content-between p-2 mb-2" style="background-color: #e1f5fe;">
+                                    <h5 class="fw-bold mb-0">Total:</h5>
+                                    <h5 class="fw-bold mb-0">@Model.ShoppingCartTotal$</h5>
+                                </div>
+                                @*<a class="btn btn-outline-primary" asp-action="CompleteOrder"> CompleteOrder</a>*@
+                                <div id="paypal-btn">
+
+                                </div>
+                                <span style="padding:5px"></span>
+                                <a class="btn btn-outline-success" asp-controller="Movies" asp-action="Index"> Add More items</a>
+                            </div>
+
+
+
+
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+@section Scripts{
+
+    <script src="https://www.paypalobjects.com/api/checkout.js"></script>
+
+    <script>
+        let _total = @Html.Raw(Model.ShoppingCartTotal);
+        paypal.Button.render({
+            //Configure environment
+            env: 'sandbox',
+            client: {
+                sandbox: 'AcKRtgL4i68EZ2ZYuYUx3ilihAg2YhL5dtF_m19A8MjBWVOn6ewNS4M_uV8gA3xi98zTcUq38gUHbVFx'
+            },
+            //Customize button
+            locale: 'en_US',
+            style: {
+                size: 'small',
+                color: 'gold',
+                shape: 'pill'
+            },
+            commit: true,
+            //Set up a payment
+            payment: function (data, actions) {
+                return actions.payment.create({
+                    transactions: [{
+                        amount: {
+                            total: _total,
+                            currency: 'USD'
+                        }
+                    }]
+                });
+            },
+            //Execute the payment
+            onAuthorize: function (data, actions) {
+                return actions.payment.execute().then(function () {
+                    var url = '@Url.Action("CompleteOrder", "Orders", new { })';
+                    window.location.href = url;
+                });
+            }
+        }, '#paypal-btn')
+    </script>
+}
