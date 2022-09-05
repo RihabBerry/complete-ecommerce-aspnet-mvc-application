@@ -1,8 +1,13 @@
 using e_commerce.Data;
+using e_commerce.Data.Cart;
 using e_commerce.Data.Services;
+using e_commerce.Models;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -34,6 +39,15 @@ namespace e_commerce
             services.AddScoped<IProducerService, ProducerService>();
             services.AddScoped<ICinemasService, CinemasService>();
             services.AddScoped<IMoviesService, MoviesService>();
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+            services.AddScoped(sc => ShoppingCart.GetShoppingCart(sc));
+            services.AddScoped<IOrdersService, OrdersService>();
+            //Authetication & Authorization
+            services.AddIdentity<ApplicationUser, IdentityRole>().AddEntityFrameworkStores<AppDbContext>();
+            services.AddSession();
+            services.AddMemoryCache();
+            services.AddAuthentication( options => { options.DefaultScheme = CookieAuthenticationDefaults.AuthenticationScheme; });
+            
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -54,6 +68,9 @@ namespace e_commerce
 
             app.UseRouting();
 
+            app.UseSession();
+            //Authentication& authorization
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
@@ -64,6 +81,7 @@ namespace e_commerce
             });
             //seed database
             AppDbInitiliazer.Seed(app);
+            AppDbInitiliazer.SeedUsersAndRolesAsync(app).Wait();
         }
     }
 }
