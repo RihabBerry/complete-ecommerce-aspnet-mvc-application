@@ -1,7 +1,9 @@
 ﻿using e_commerce.Data;
 using e_commerce.Data.Services;
+using e_commerce.Data.Static;
 using e_commerce.Data.ViewModels;
 using e_commerce.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -12,6 +14,7 @@ using System.Threading.Tasks;
 
 namespace e_commerce.Controllers
 {
+    [Authorize(Roles = UserRoles.Admin)]
     public class MoviesController : Controller
     {
 
@@ -21,6 +24,8 @@ namespace e_commerce.Controllers
         {
             _movieService = movieService;
         }
+
+        [AllowAnonymous]
         public async Task<IActionResult> Index()
         {
 
@@ -30,6 +35,7 @@ namespace e_commerce.Controllers
         }
 
         //Get: Movies/Details/1
+        [AllowAnonymous]
         public async Task<IActionResult> Details(int id)
         {
             var result = await _movieService.GetMovieById(id);

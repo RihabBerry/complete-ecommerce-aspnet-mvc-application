@@ -1,6 +1,8 @@
 ﻿using e_commerce.Data;
 using e_commerce.Data.Services;
+using e_commerce.Data.Static;
 using e_commerce.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -9,17 +11,16 @@ using System.Threading.Tasks;
 
 namespace e_commerce.Controllers
 {
+    [Authorize(Roles = UserRoles.Admin)]
     public class ActorsController : Controller
     {
-
-
         private readonly IActorsService _actorService;
 
         public ActorsController(IActorsService actorService)
         {
             _actorService = actorService;
         }
-
+        [AllowAnonymous]
         public async Task<IActionResult> Index()
         {
             var data = await _actorService.GetAll();
@@ -43,6 +44,7 @@ namespace e_commerce.Controllers
             return RedirectToAction(nameof(Index));
 
         }
+        [AllowAnonymous]
         //Get:Actors/Details/id
         public async Task<ActionResult> Details(int id)
         {

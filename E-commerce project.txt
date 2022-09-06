@@ -98,3 +98,5 @@ get Orders/shoppingCart
 render a view feha View(response ) response de type ShoppingCartVM
 -----------------
 3leh kol marra cartId ? normlament un seul cart id 
+---------------------
+how to consume validation in react from asp .net ?

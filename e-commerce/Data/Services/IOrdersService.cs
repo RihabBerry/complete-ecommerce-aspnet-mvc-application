@@ -9,6 +9,6 @@ namespace e_commerce.Data.Services
   public   interface IOrdersService
     {
         Task StoreOrdersAsync(List<ShoppingCartItem> items, string userId, string userEmailAddress);
-        Task<List<Order>> GetOrdersByUserIdAsync(string userId);
+        Task<List<Order>> GetOrdersByUserIdAndRoleAsync(string userId,string userRole);
     }
 }

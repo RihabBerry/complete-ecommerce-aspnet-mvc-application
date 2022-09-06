@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace e_commerce.Data.Services
 {
-    public class OrderItemsService : EntityBaseRepository<OrderItem>,IOrderItemsService
+    public class OrderItemsService : EntityBaseRepository<OrderItem>
     {
 
         public OrderItemsService(AppDbContext context) : base(context)

@@ -1,6 +1,8 @@
 ﻿using e_commerce.Data;
 using e_commerce.Data.Services;
+using e_commerce.Data.Static;
 using e_commerce.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -10,6 +12,7 @@ using System.Threading.Tasks;
 
 namespace e_commerce.Controllers
 {
+    [Authorize(Roles=UserRoles.Admin)]
     public class ProducersController : Controller
     {
         private readonly IProducerService _producerService;
